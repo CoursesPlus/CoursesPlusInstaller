@@ -125,7 +125,7 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 
 				// Clear out extension blacklist so user can reinstall extension if they removed it
 				// should ask NLTL to put CoursesPlus on policy-set whitelist....
-				Path blDir = Paths.get("/Users/student/Library/Application Support/Google/Chrome/Safe Browsing Extension Blacklist");
+				Path blDir = Paths.get("/Users/" + System.getProperty("user.name") + "/Library/Application Support/Google/Chrome/Safe Browsing Extension Blacklist");
 				try {
 					Files.deleteIfExists(blDir);
 				} catch (IOException e3) {

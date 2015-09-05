@@ -77,7 +77,7 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 			install.addActionListener(this);
 		add(install);
 
-		JLabel info = new JLabel("<html><div width=\"400px\" style=\"text-align:center;\">This installer will install CoursesPlus into Google Chrome. It will connect to the Internet to download the latest version of CoursesPlus, and then set up automatic updates. Anonymous analytics may be sent to us for statistical purposes. If an error occurs, you will be given the option to transmit information about the error to us so we can fix it.</div></html>", JLabel.CENTER);
+		JLabel info = new JLabel("<html><div width=\"400px\" style=\"text-align:center;\">Hi" + System.getProperty("user.name"), + "This installer will install CoursesPlus into Google Chrome. It will connect to the Internet to download the latest version of CoursesPlus, and then set up automatic updates. Anonymous analytics may be sent to us for statistical purposes. If an error occurs, you will be given the option to transmit information about the error to us so we can fix it.</div></html>", JLabel.CENTER);
 			info.setFont(font);
 		add(info);
 
@@ -172,7 +172,7 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 					e1.printStackTrace();
 				}
 
-				JOptionPane.showMessageDialog(null, "Done");
+				JOptionPane.showMessageDialog(null, "The installation has been completed. See you later, " + System.getProperty("user.name"));
 
 				break;
 

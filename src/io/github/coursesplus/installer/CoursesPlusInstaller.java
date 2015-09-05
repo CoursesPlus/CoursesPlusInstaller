@@ -27,33 +27,33 @@ import javax.swing.JOptionPane;
 @SuppressWarnings("serial")
 public class CoursesPlusInstaller extends JFrame implements ActionListener {
 	public static final String VERSION = "0.1";
-	
+
 	public static Logger logger;
-	
+
 	public static Dimension screenSize;
 
 	public static Font font;
 	public static Font bigFont;
 	public static Font titleFont;
 
-	public static final String BASE_PATH = "/Users/student/Library/Application Support/Google/Chrome/";
+	public static final String BASE_PATH = "/Users" + System.getProperty("user.name") + "Library/Application Support/Google/Chrome/";
 	public static final String FOLDER_NAME = "External Extensions";
 	public static final String EXT_ID = "pieincmodljnbihihjnapcmhdddhbpgi";
 	public static final String EXT_FILE = "{\"external_update_url\": \"https://clients2.google.com/service/update2/crx\"}";
-	
+
 	public static final String LOAD_PAGE = "data:text/html,<h1>Loading, please wait...</h1><h2>Do not navigate away from this page while installation is in progress.</h2>";
-	
+
 	public CoursesPlusInstaller() {
 		super("CoursesPlus Installer v" + VERSION);
-		
+
 		logger = Logger.getLogger(CoursesPlusInstaller.class.getName());
-		
+
 		screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		
+
 		try {
 			// try and load Lato
 			font = Font.createFont(Font.TRUETYPE_FONT, new File("Lato-Regular.ttf"));
-			
+
 			font = font.deriveFont(14f);
 			bigFont = font.deriveFont(32f);
 			titleFont = font.deriveFont(64f);
@@ -65,7 +65,7 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 			bigFont = new Font("SansSerif", Font.PLAIN, 32);
 			titleFont = new Font("SansSerif", Font.PLAIN, 64);
 		}
-		
+
 		setLayout(new GridLayout(3, 1));
 
 		JLabel title = new JLabel("CoursesPlus", JLabel.CENTER);
@@ -83,10 +83,10 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 
 		setBounds((screenSize.width - 600) / 2, (screenSize.height - 400) / 2, 600, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		setVisible(true);
 	}
-	
+
 	public static void main(String[] args) {
 		new CoursesPlusInstaller();
 	}
@@ -98,14 +98,14 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 		switch (text) {
 			case "Install":
 				JOptionPane.showMessageDialog(null, "Make sure you've closed open Chrome windows. Any windows remaining open will automatically be closed after pressing OK.", "Close Chrome windows", JOptionPane.WARNING_MESSAGE);
-				
+
 				try {
 					Runtime.getRuntime().exec(new String[]{"killall", "Google Chrome"});
 				} catch (IOException e4) {
 					// TODO Auto-generated catch block
 					e4.printStackTrace();
 				}
-				
+
 				File destDir = new File(BASE_PATH + FOLDER_NAME);
 				if (!destDir.exists()) {
 					destDir.mkdir();
@@ -132,8 +132,8 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 					// TODO Auto-generated catch block
 					e3.printStackTrace();
 				}
-				
-				Path extensionDir = Paths.get("/Users/student/Library/Application Support/Google/Chrome/Default/Extensions");
+
+				Path extensionDir = Paths.get("/Users/" + System.getProperty("user.name") + "/Library/Application Support/Google/Chrome/Default/Extensions");
 				Set<PosixFilePermission> orig = null;
 				try {
 					// save original Extensions dir permissions
@@ -143,7 +143,7 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 					Set<PosixFilePermission> perms = Files.getPosixFilePermissions(extensionDir);
 					perms.add(PosixFilePermission.OWNER_WRITE);
 					Files.setPosixFilePermissions(extensionDir, perms);
-					
+
 					// open Chrome
 					String[] cmd = {"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", LOAD_PAGE};
 					Process chrome = Runtime.getRuntime().exec(cmd);
@@ -151,7 +151,7 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 					Runtime.getRuntime().exec(new String[]{"killall", "Google Chrome"});
 					Thread.sleep(100);
 					Runtime.getRuntime().exec(new String[]{"killall", "Google Chrome"});
-					
+
 					// restore Extensions dir permissions
 					Files.setPosixFilePermissions(extensionDir, orig);
 				} catch (IOException e1) {
@@ -168,14 +168,14 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 							e2.printStackTrace();
 						}
 					}
-					
+
 					e1.printStackTrace();
 				}
-				
+
 				JOptionPane.showMessageDialog(null, "Done");
-				
+
 				break;
-				
+
 			default:
 				logger.warning("Unknown button pressed - " + text);
 				break;

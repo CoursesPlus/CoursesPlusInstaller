@@ -52,10 +52,14 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 
 		screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 
-		Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource("Logo.png")).getImage());
+		try {
+			Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource("Logo.png")).getImage());
+		} catch (Exception e) {
+			// icon isn't that important, continue
+			// but log it
+			logger.log(Level.WARNING, "Failed to load icon - " + e.getMessage(), e);
+		}
 		
-		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "CoursesPlus Installer");
-
 		try {
 			// try and load Lato
 			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("Lato-Regular.ttf"));

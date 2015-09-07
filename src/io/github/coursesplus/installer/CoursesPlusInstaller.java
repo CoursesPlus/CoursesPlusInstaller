@@ -15,14 +15,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
+import com.apple.eawt.Application;
 
 @SuppressWarnings("serial")
 public class CoursesPlusInstaller extends JFrame implements ActionListener {
@@ -43,14 +45,14 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 
 	public static final String LOAD_PAGE = "data:text/html,<h1>Loading, please wait...</h1><h2>Do not navigate away from this page while installation is in progress.</h2>";
 
-	Application.getApplication().setDockIconImage(new ImageIcon("Logo.png").getImage());
-
 	public CoursesPlusInstaller() {
 		super("CoursesPlus Installer v" + VERSION);
 
 		logger = Logger.getLogger(CoursesPlusInstaller.class.getName());
 
 		screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		
+		Application.getApplication().setDockIconImage(new ImageIcon("Logo.png").getImage());
 
 		try {
 			// try and load Lato
@@ -79,7 +81,7 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 			install.addActionListener(this);
 		add(install);
 
-		JLabel info = new JLabel("<html><div width=\"400px\" style=\"text-align:center;\">Hi" + System.getProperty("user.name"), + "This installer will install CoursesPlus into Google Chrome. It will connect to the Internet to download the latest version of CoursesPlus, and then set up automatic updates. Anonymous analytics may be sent to us for statistical purposes. If an error occurs, you will be given the option to transmit information about the error to us so we can fix it.</div></html>", JLabel.CENTER);
+		JLabel info = new JLabel("<html><div width=\"400px\" style=\"text-align:center;\">Hi" + System.getProperty("user.name") + "This installer will install CoursesPlus into Google Chrome. It will connect to the Internet to download the latest version of CoursesPlus, and then set up automatic updates. Anonymous analytics may be sent to us for statistical purposes. If an error occurs, you will be given the option to transmit information about the error to us so we can fix it.</div></html>", JLabel.CENTER);
 			info.setFont(font);
 		add(info);
 

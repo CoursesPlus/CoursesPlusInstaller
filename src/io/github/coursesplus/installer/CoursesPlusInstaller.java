@@ -43,6 +43,8 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 
 	public static final String LOAD_PAGE = "data:text/html,<h1>Loading, please wait...</h1><h2>Do not navigate away from this page while installation is in progress.</h2>";
 
+	Application.getApplication().setDockIconImage(new ImageIcon("Logo.png").getImage());
+
 	public CoursesPlusInstaller() {
 		super("CoursesPlus Installer v" + VERSION);
 

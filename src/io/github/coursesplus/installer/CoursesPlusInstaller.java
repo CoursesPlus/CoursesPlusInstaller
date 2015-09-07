@@ -51,8 +51,9 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 		logger = Logger.getLogger(CoursesPlusInstaller.class.getName());
 
 		screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		
+
 		Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource("Logo.png")).getImage());
+		java -Xdock:name="CoursesPlus Installer" -jar myapp.jar
 
 		try {
 			// try and load Lato

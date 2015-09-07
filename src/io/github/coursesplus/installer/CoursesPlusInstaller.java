@@ -53,7 +53,7 @@ public class CoursesPlusInstaller extends JFrame implements ActionListener {
 		screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		
 		Application.getApplication().setDockIconImage(new ImageIcon(getClass().getResource("Logo.png")).getImage());
-
+		
 		try {
 			// try and load Lato
 			font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("Lato-Regular.ttf"));
